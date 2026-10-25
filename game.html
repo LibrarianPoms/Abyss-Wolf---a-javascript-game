@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abyss Wolf - Metroidvania</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #000000;
+            color: #fff;
+            line-height: 1.6;
+            background-image: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+        }
+
+        .game-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 20px;
+        }
+
+        .game-logo {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin: 40px auto;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(110, 110, 255, 0.3));
+        }
+
+        .description {
+            font-size: 1.3em;
+            color: #b8b8ff;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 30px;
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 10px;
+            border: 1px solid rgba(73, 73, 149, 0.3);
+            text-shadow: 0 0 10px rgba(184, 184, 255, 0.3);
+        }
+
+        .game-description {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .game-description h3 {
+            font-family: 'Metal Mania', cursive;
+            color: #6e6eff;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(110, 110, 255, 0.5);
+        }
+
+        .game-description ul {
+            list-style-type: none;
+        }
+
+        .game-description li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            color: #b8b8ff;
+            font-size: 1.2em;
+        }
+
+        .game-description li:before {
+            content: "☽";
+            color: #6e6eff;
+            position: absolute;
+            left: 0;
+        }
+
+        .play-button {
+            display: block;
+            width: 250px;
+            margin: 40px auto;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #2e2e5e, #4a4a9c);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 1.4em;
+            font-family: 'Metal Mania', cursive;
+            transition: all 0.3s ease;
+            border: 1px solid #6e6eff;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(110, 110, 255, 0.2);
+        }
+
+        .play-button:hover {
+            background: linear-gradient(45deg, #4a4a9c, #2e2e5e);
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(110, 110, 255, 0.4);
+        }
+
+        .tagline {
+            font-style: italic;
+            color: #6e6eff;
+            text-align: center;
+            margin: 30px auto;
+            font-size: 1.4em;
+            text-shadow: 0 0 10px rgba(110, 110, 255, 0.3);
+        }
+
+        .screenshot-gallery {
+            max-width: 800px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .screenshot {
+            width: 100%;
+            max-width: 300px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(110, 110, 255, 0.2);
+            transition: transform 0.3s ease;
+            margin: 0 auto;
+        }
+
+        .screenshot:hover {
+            transform: scale(1.05);
+        }
+
+        .warning-section {
+            background: rgba(255, 0, 0, 0.1);
+            border-left: 4px solid #ff3366;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .warning-section h3 {
+            color: #ff3366;
+            margin-bottom: 10px;
+        }
+
+        .donation-section {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 30px;
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 15px;
+            border: 1px solid rgba(110, 110, 255, 0.3);
+            text-align: center;
+        }
+
+        .donation-title {
+            font-family: 'Metal Mania', cursive;
+            color: #6e6eff;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(110, 110, 255, 0.5);
+        }
+
+        .donation-amount {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .amount-btn {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #2e2e5e, #4a4a9c);
+            color: white;
+            border: 1px solid #6e6eff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .amount-btn:hover, .amount-btn.active {
+            background: linear-gradient(45deg, #4a4a9c, #2e2e5e);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(110, 110, 255, 0.4);
+        }
+
+        .donate-btn {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #2e2e5e, #4a4a9c);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #6e6eff;
+            margin-top: 20px;
+        }
+
+        .donate-btn:hover {
+            background: linear-gradient(45deg, #4a4a9c, #2e2e5e);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(110, 110, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <img src="assests/logo.png" alt="Abyss Wolf" class="game-logo">
+            <div class="tagline" style="color: #6666ff; font-family: 'Crimson Text', serif;">Embrace the darkness, become the legend</div>
+        </div>
+
+        <div class="description">
+            <p>In a city consumed by chaos and darkness, an ancient evil has awakened. As the legendary Abyss Wolf, you must traverse through corrupted landscapes, face creatures of doom, and harness your growing powers to save the city from their destructive wrath.</p>
+        </div>
+
+        <div class="screenshot-gallery">
+            <img src="assests/klipartz.com.png" alt="Gameplay Screenshot 1" class="screenshot">
+            <img src="assests/wolf3.jpg" alt="Gameplay Screenshot 2" class="screenshot">
+            <img src="assests/wolf1.png" alt="Gameplay Screenshot 3" class="screenshot">
+            <img src="assests/wolf2.png" alt="Gameplay Screenshot 4" class="screenshot">
+        </div>
+
+        <div class="warning-section">
+            <h3>Warning:</h3>
+            <p>Game contains intense action sequences, dark themes, and atmospheric horror elements. Player discretion is advised.</p>
+        </div>
+
+        <div class="game-description">
+            <h3>Game Description</h3>
+            <ul>
+                <li>Epic Metroidvania gameplay with fluid combat and movement mechanics</li>
+                <li>Explore a vast, interconnected world filled with secrets and ancient lore</li>
+                <li>Battle terrifying creatures of doom with unique combat abilities</li>
+                <li>Unlock powerful abilities and transform your wolf's powers</li>
+                <li>Atmospheric soundtrack that enhances the dark fantasy experience</li>
+                <li>Multiple endings based on your choices and discoveries</li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="play-button">Begin Your Hunt</a>
+    </div>
+
+    <div class="donation-section">
+        <h2 class="donation-title">Buy Me a Coffee ☕</h2>
+        <div class="donation-amount">
+            <button class="amount-btn" data-amount="3">$3</button>
+            <button class="amount-btn" data-amount="5">$5</button>
+            <button class="amount-btn" data-amount="10">$10</button>
+        </div>
+        <button class="donate-btn" id="donateButton">Support the Developer</button>
+    </div>
+
+    <script>
+        document.querySelector('.play-button').addEventListener('click', function(e) {
+            if(confirm('Are you ready to embrace the darkness?')) {
+                return true;
+            } else {
+                e.preventDefault();
+            }
+        });
+
+        const amountButtons = document.querySelectorAll('.amount-btn');
+        let selectedAmount = 5; // Default amount
+
+        amountButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                amountButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                selectedAmount = button.dataset.amount;
+            });
+        });
+
+        // Set default active button
+        document.querySelector('[data-amount="5"]').classList.add('active');
+
+        document.getElementById('donateButton').addEventListener('click', () => {
+            // Here you can handle the donation process
+            alert(`Thank you for your support! Processing $${selectedAmount} donation...`);
+            // Add your payment processing logic here
+        });
+    </script>
+</body>
+</html> 

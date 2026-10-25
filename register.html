@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abyss Wolf - Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+        }
+
+        .register-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .register-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .register-btn:hover {
+            background: #2980b9;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .login-link p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Create Account</h2>
+        <form action="javascript:void(0);" onsubmit="handleRegister(event)">
+            <div class="form-group">
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <button type="submit" class="register-btn">Register</button>
+            <div class="login-link">
+                <p>Already have an account? <a href="login.html">Login here</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const existingUsers = [
+            { username: 'testuser', email: 'test@example.com' },
+            
+        ];
+
+        function isValidPassword(password) {
+          
+            const minLength = 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            
+            return password.length >= minLength && 
+                   hasUpperCase && 
+                   hasLowerCase && 
+                   hasNumbers && 
+                   hasSpecialChar;
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            // Basic validation
+            if (!fullname || !email || !username || !password || !confirmPassword) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Check if username or email already exists
+            const userExists = existingUsers.some(user => 
+                user.username.toLowerCase() === username.toLowerCase() || 
+                user.email.toLowerCase() === email.toLowerCase()
+            );
+            
+            if (userExists) {
+                alert('Username or email already exists. Please choose different credentials.');
+                return;
+            }
+
+            // Password validation
+            if (!isValidPassword(password)) {
+                alert('Password must be at least 8 characters long and contain:\n' +
+                      '- At least one uppercase letter\n' +
+                      '- At least one lowercase letter\n' +
+                      '- At least one number\n' +
+                      '- At least one special character (!@#$%^&*(),.?":{}|<>)');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            // store the new user
+            const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+            
+            
+            registeredUsers.push({
+                fullname,
+                email,
+                username,
+                password
+            });
+            
+            localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+            
+            alert('Registration successful! Please login.');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abyss Wolf Leaderboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #000000;
+            background-image: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .leaderboard-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .leaderboard-title {
+            font-family: 'Metal Mania', cursive;
+            color: #6e6eff;
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(110, 110, 255, 0.3);
+        }
+
+        .leaderboard {
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 15px;
+            border: 1px solid rgba(110, 110, 255, 0.3);
+            overflow: hidden;
+        }
+
+        .player-row {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(110, 110, 255, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .player-row:hover {
+            background: rgba(110, 110, 255, 0.1);
+        }
+
+        .rank {
+            width: 60px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #6e6eff;
+        }
+
+        .top-3 {
+            font-size: 1.8em;
+            color: #ffd700;
+        }
+
+        .player-info {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .player-name {
+            font-size: 1.2em;
+            color: #fff;
+        }
+
+        .score {
+            font-size: 1.3em;
+            color: #6e6eff;
+            margin-left: auto;
+            padding-right: 20px;
+        }
+
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #2e2e5e, #4a4a9c);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            border: 1px solid #6e6eff;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(45deg, #4a4a9c, #2e2e5e);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(110, 110, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="leaderboard-container">
+        <h1 class="leaderboard-title">Leaderboard</h1>
+        
+        <div class="leaderboard">
+            <div class="player-row">
+                <div class="rank top-3">1</div>
+                <div class="player-info">
+                    <div class="player-name">WolfSlayer</div>
+                </div>
+                <div class="score">15,750</div>
+            </div>
+
+            <div class="player-row">
+                <div class="rank top-3">2</div>
+                <div class="player-info">
+                    <div class="player-name">DarkHunter</div>
+                </div>
+                <div class="score">14,320</div>
+            </div>
+
+            <div class="player-row">
+                <div class="rank top-3">3</div>
+                <div class="player-info">
+                    <div class="player-name">AbyssWalker</div>
+                </div>
+                <div class="score">13,890</div>
+            </div>
+
+            <div class="player-row">
+                <div class="rank">4</div>
+                <div class="player-info">
+                    <div class="player-name">ShadowBlade</div>
+                </div>
+                <div class="score">12,450</div>
+            </div>
+
+            <div class="player-row">
+                <div class="rank">5</div>
+                <div class="player-info">
+                    <div class="player-name">NightStalker</div>
+                </div>
+                <div class="score">11,780</div>
+            </div>
+
+            <div class="player-row">
+                <div class="rank">6</div>
+                <div class="player-info">
+                    <div class="player-name">MoonHowler</div>
+                </div>
+                <div class="score">10,920</div>
+            </div>
+
+            <div class="player-row">
+                <div class="rank">7</div>
+                <div class="player-info">
+                    <div class="player-name">VoidWanderer</div>
+                </div>
+                <div class="score">9,840</div>
+            </div>
+
+            <div class="player-row">
+                <div class="rank">8</div>
+                <div class="player-info">
+                    <div class="player-name">DoomBringer</div>
+                </div>
+                <div class="score">8,750</div>
+            </div>
+
+            <div class="player-row">
+                <div class="rank">9</div>
+                <div class="player-info">
+                    <div class="player-name">SoulReaper</div>
+                </div>
+                <div class="score">7,630</div>
+            </div>
+
+            <div class="player-row">
+                <div class="rank">10</div>
+                <div class="player-info">
+                    <div class="player-name">ChaosHarbinger</div>
+                </div>
+                <div class="score">6,940</div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-button">Back to Home</a>
+    </div>
+</body>
+</html> 
